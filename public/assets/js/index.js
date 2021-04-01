@@ -89,3 +89,48 @@ const handleNoteView = function () {
     activeNote = $(this).data();
     renderActiveNote();
 };
+
+//Hide the Save button when note's tilte/text are empty
+//OR else show it
+
+const handleRenderSaveBtn = function () {
+    if (!$noteTitle.val().trim() || !$noteText.val().trim()){
+        $saveNoteBtn.hide();
+    } else {
+        $saveNoteBtn.show();
+    }
+};
+
+//Return JQUERY object for li with text & delete button
+// unless withDeleteButton argument is false
+const create$li = (text, withDeleteButton = true) => {
+    const $li = $("<li class='list-group-item'>");
+    const $span = $("<span>").text(text);
+    $li.append($span);
+
+    if (withDeleteButton) {
+        const $delBtn = $(
+            "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
+        );
+        $li.append($delBtn);
+        }
+            return $li;
+        };
+        if (notes.length === 0) {
+            noteListIntems.push(create$li("No save Notes", false))
+            ;
+        } 
+        note.forEach((note) => {
+            const $li = create$li(note.tite).date(note);
+            noteListItem.push($li);
+        });
+        //Notes from db gets renders to Sidebar
+        const getAndRenderNotes = () => {
+            return getNotes().then(renderNoteList);        
+        };
+        $saveNoteBtn.on("click", handleNoteSave);
+        $noteList.on("click", ".list-group-item", handleNoteView);
+        $newNoteBtn.on("click", handleNewNoteView);
+        $noteList.on("click", ".delete-note", handleNoteDelete);
+        $noteTitle.on("keyup", handleRenderSaveBtn);
+        $noteText.on("keyup", handleRenderSaveBtn);
