@@ -103,7 +103,7 @@ const handleRenderSaveBtn = function () {
 
 //Return JQUERY object for li with text & delete button
 // unless withDeleteButton argument is false
-const create$li = (text, withDeleteButton = true) => {
+const new$li = (text, withDeleteButton = true) => {
     const $li = $("<li class='list-group-item'>");
     const $span = $("<span>").text(text);
     $li.append($span);
@@ -117,11 +117,11 @@ const create$li = (text, withDeleteButton = true) => {
             return $li;
         };
         if (notes.length === 0) {
-            noteListIntems.push(create$li("No save Notes", false))
+            noteListIntems.push(new$li("No save Notes", false))
             ;
         } 
         note.forEach((note) => {
-            const $li = create$li(note.tite).date(note);
+            const $li = new$li(note.tite).date(note);
             noteListItem.push($li);
         });
         //Notes from db gets renders to Sidebar
