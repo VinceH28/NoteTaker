@@ -1,0 +1,49 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.save-note {
+    display: none;
+}
+
+.icons i {
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.note-texture, .note-title {
+    color:black;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.note-textarea {
+    resize: none;
+    height: calc(100% - 65px);
+    padding-top: 15px;
+}
+
+.note-titie {
+    height: 50px;
+    margin: 13px;
+    font-size: 3rem;
+}
+
+.note-titie:read-only, .note-textarea:read-only {
+    color: gray;
+}
+.list-container .card {
+    height: calc(100vh - 75px);
+    border-bottom: none;
+    border-bottom-right-radius: 0 ;
+    border-bottom-left-radius: 0;
+}
+
+.list-container {
+    padding-left: 0;
+}
