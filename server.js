@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Sets up the routes js files that will run when node server.js is typed in the terminal.
-require("./public/assets/routes/apiroutes.js")(app);
-require("./public/assets/routes/htmlroutes.js")(app);
+require("./routes/apiroutes")(app);
+require("./routes/htmlroutes")(app);
 
 // LISTENER
 // The below code "starts" the server
