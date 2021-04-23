@@ -14,5 +14,13 @@
   },
   "devDependencies": {},
   "keywords": [],
-  "description": ""
+  "description": "* [General info](#general-info)\r * [Screenshots](#screenshots)\r * [Setup](#setup)\r * [Features](#features)\r * [Status](#status)\r * [Inspiration](#inspiration)\r * [Contact](#contact)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VinceH28/NoteTaker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VinceH28/NoteTaker/issues"
+  },
+  "homepage": "https://github.com/VinceH28/NoteTaker#readme"
 }
