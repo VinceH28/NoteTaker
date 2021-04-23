@@ -83,6 +83,12 @@ const handleNoteView = function () {
     renderActiveNote();
 };
 
+//Set activeNote to object and allows user to enter new note
+const handleNewNoteView = function () {
+    activeNote = $(this).data();
+    renderActiveNote();
+};
+
 //Hide the Save button when note's tilte/text are empty
 //OR else show it
 
