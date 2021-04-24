@@ -43,7 +43,7 @@ const renderUserNote = () => {
         $noteTitle.val(userNote.text);
     } else {
         $noteTitle.attr("readonly", false);
-        $noteText.attr("readonly", true);
+        $noteText.attr("readonly", false);
         $noteTitle.val("");
         $noteText.val("");
     }
@@ -52,7 +52,7 @@ const renderUserNote = () => {
 //Note data froom input save to the db and update view
 const handleNoteSave = function() {
     const newNote = {
-        title: $noteTilte.val(),
+        title: $noteTitle.val(),
         text: $noteText.val(),
     };
 
@@ -65,6 +65,7 @@ const handleNoteSave = function() {
 //Delete clicked note
 const handleNoteDelete = function (event) {
     event.stopPropagation();
+
     const note = $(this).parent(".list-group-item").data();
 
     if (userNote.id === note.id) {
@@ -93,16 +94,22 @@ const handleNewNoteView = function () {
 //OR else show it
 
 const handleRenderSaveBtn = function () {
-    if (!$noteTitle.val().trim() || !$noteText.val().trim()){
+    if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
         $saveNoteBtn.hide();
     } else {
         $saveNoteBtn.show();
     }
 };
 
-//Return JQUERY object for li with text & delete button
-// unless withDeleteButton argument is false
-const newLine = (text, withDeleteButton = true) => {
+// Display's the list of note titles
+const renderNoteList = (notes) => {
+    $noteList.empty();
+    
+    const noteListItems = [];
+
+    //Return JQUERY object for li with text & delete button
+    // unless withDeleteButton argument is false
+    const renderLine = (text, withDeleteButton = true) => {
     const $li = $("<li class='list-group-item'>");
     const $span = $("<span>").text(text);
     $li.append($span);
@@ -113,26 +120,31 @@ const newLine = (text, withDeleteButton = true) => {
         );
         $li.append($delBtn);
         }
-            return $li;
-        };
-        if (notes.length === 0) {
-            noteListIntems.push(newLine("No save Notes", false))
-            ;
+        return $li;
+    };
+    if (notes.length === 0) {
+        noteListItems.push(renderLine("No save Notes", false));
         } 
+
         note.forEach((note) => {
-            const $li = newLine(note.tite).date(note);
+            const $li = renderLine(note.title).date(note);
             noteListItem.push($li);
         });
-        //Notes from db gets renders to Sidebar
-        const findThenRenderNotes = () => {
-            return getNotes().then(renderNoteList);        
-        };
-        $saveNoteBtn.on("click", handleNoteSave);
-        $noteList.on("click", ".list-group-item", handleNoteView);
-        $newNoteBtn.on("click", handleNewNoteView);
-        $noteList.on("click", ".delete-note", handleNoteDelete);
-        $noteTitle.on("keyup", handleRenderSaveBtn);
-        $noteText.on("keyup", handleRenderSaveBtn);
 
-        // Gets and renders the initial list of notes
-        findThenRenderNote();
+            $noteList.append(noteListItems);
+    };
+
+    //Notes from db gets renders to Sidebar
+    const findThenRenderNotes = () => {
+        return getNotes().then(renderNoteList);        
+    };
+        
+    $saveNoteBtn.on("click", handleNoteSave);
+    $noteList.on("click", ".list-group-item", handleNoteView);
+    $newNoteBtn.on("click", handleNewNoteView);
+    $noteList.on("click", ".delete-note", handleNoteDelete);
+    $noteTitle.on("keyup", handleRenderSaveBtn);
+    $noteText.on("keyup", handleRenderSaveBtn);
+
+    // Gets and renders the initial list of notes
+    findThenRenderNote();
