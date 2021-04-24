@@ -4,6 +4,11 @@ html, body {
     padding: 0;
 }
 
+.navbar-brand{
+    background-image: url("../images/notes_background.png");
+    background-image: transparent;
+    background-repeat: no-repeat;
+}
 .save-note {
     display: none;
 }
