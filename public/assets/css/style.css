@@ -22,6 +22,10 @@ html, body {
     border: none;
 }
 
+.card{
+    background-image: url("https://images.unsplash.com/photo-1598620616337-cb8f766489bd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bm90ZXBhZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=60");
+    background-image: transparent;
+}
 .note-textarea {
     resize: stretch;
     height: calc(100% - 65px);
