@@ -5,7 +5,7 @@ html, body {
 }
 
 .navbar-brand{
-    background-image: url("../images/notes_background.png");
+    background-image: url("https://images.unsplash.com/photo-1414919823178-e9d9d0afd0ac?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTl8fG5vdGVwYWR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60");
     background-image: transparent;
     background-repeat: no-repeat;
 }
