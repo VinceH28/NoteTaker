@@ -85,7 +85,7 @@ const handleNoteView = function () {
 
 //Set userNote to object and allows user to enter new note
 const handleNewNoteView = function () {
-    userNote = $(this).data();
+    userNote = {}
     renderUserNote();
 };
 
