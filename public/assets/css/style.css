@@ -23,7 +23,7 @@ html, body {
 }
 
 .note-textarea {
-    resize: none;
+    resize: stretch;
     height: calc(100% - 65px);
     padding-top: 15px;
 }

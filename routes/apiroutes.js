@@ -1,39 +1,63 @@
 //REQUIRE fs TO WRITE TO FILE
 const fs = require("fs");
-const path = require("path");
-let notes = require("../db/db.json");
-const { v4: uuidv4 } = require("uuid");
 
 //ROUTING
 module.exports = function (app) {
     //API GET Requests
     app.get("/api/notes", function (req, res) {
-            res.json(notes);
+      fs.readFile("./db/db.json", "utf8", (err, data) => {
+        if (!data) {
+          return (data = []);
+        }
+        if (err) throw err;
+        let notes = JSON.parse(data);
+        res.json(notes);
+      });
     });
 
     //API POST Requests
     app.post("/api/notes", function (req, res) {
-            var newData = req.body;
-            newData.id = uuidv4();
+      fs.readFile("./db/db.json", "utf8", (err, data) => {
+        let notes = [];
+      if (err) throw err;
+      if (!data) {
+        console.log("No data!");
+        notes = [];
+      } else {
+                notes = JSON.parse(data);
+      }
+            console.log("These are the notes", notes);
 
-            console.log("These are the notes", newData);
-
-            notes.push(newData);
-
-            console.log("The new note as been added!");
-
-            fs.writeFileSync(path.join(__dirname, "../db/db.json"), 
-            JSON.stringify(notes))
-            res.json(notes);
-          });
+            const newNote = {
+              id: Math.floor(Math.random() * 100),
+              title: req.body.title,
+              text: req.body.text,
+      };
+        notes.push(newNote);
+        
+        console.log("The new note as been added!");
+        fs.writeFileSync("./db/db.json", JSON.stringify(notes), "utf-8");
+        res.json(newNote);
+      });
+    });
 
          //API DELETE Requests
          app.delete("/api/notes/:id", function (req, res) {
-            var noteIdDelete = req.params.id;
-            notes = notes.filter((note) => note.id != noteIdDelete);
+          fs.readFile("./db/db.json", "utf8", (err, data) => {
+            if (err) throw err;
+            let notes = JSON.parse(data);
+      
+            const filteredNotes = notes.filter(note => {
+            return note.id != req.params.id
+            });
+      
+            console.log("Note deleted! The notes are now:", filteredNotes)
+      
+            fs.writeFileSync("./db/db.json", JSON.stringify(filteredNotes), "utf-8");
 
-            console.log("Note deleted! The notes are now:", noteIdDelete)
-            
-            res.json(notes);
+            res.sendStatus(200);
+      
           });
-        }; 
+        });
+      };
+     

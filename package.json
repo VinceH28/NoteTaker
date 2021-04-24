@@ -13,7 +13,9 @@
     "inquirer": "^8.0.0",
     "uuidv4": "^6.2.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    
+  },
   "keywords": [],
   "description": "* [General info](#general-info)\r * [Screenshots](#screenshots)\r * [Setup](#setup)\r * [Features](#features)\r * [Status](#status)\r * [Inspiration](#inspiration)\r * [Contact](#contact)",
   "repository": {
