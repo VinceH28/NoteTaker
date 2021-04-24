@@ -132,19 +132,19 @@ const renderNoteList = (notes) => {
         });
 
             $noteList.append(noteListItems);
-    };
+};
 
-    //Notes from db gets renders to Sidebar
-    const findThenRenderNotes = () => {
-        return getNotes().then(renderNoteList);        
-    };
-        
-    $saveNoteBtn.on("click", handleNoteSave);
-    $noteList.on("click", ".list-group-item", handleNoteView);
-    $newNoteBtn.on("click", handleNewNoteView);
-    $noteList.on("click", ".delete-note", handleNoteDelete);
-    $noteTitle.on("keyup", handleRenderSaveBtn);
-    $noteText.on("keyup", handleRenderSaveBtn);
+//Notes from db gets renders to Sidebar
+const findThenRenderNotes = () => {
+    return getNotes().then(renderNoteList);        
+};
 
-    // Gets and renders the initial list of notes
-    findThenRenderNote();
+$saveNoteBtn.on("click", handleNoteSave);
+$noteList.on("click", ".list-group-item", handleNoteView);
+$newNoteBtn.on("click", handleNewNoteView);
+$noteList.on("click", ".delete-note", handleNoteDelete);
+$noteTitle.on("keyup", handleRenderSaveBtn);
+$noteText.on("keyup", handleRenderSaveBtn);
+
+// Gets and renders the initial list of notes
+findThenRenderNote();
