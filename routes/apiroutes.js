@@ -5,6 +5,7 @@ const fs = require("fs");
 module.exports = function (app) {
     //API GET Requests
     app.get("/api/notes", function (req, res) {
+      console.log("get route hit");
       fs.readFile("./db/db.json", "utf8", (err, data) => {
         if (!data) {
           return (data = []);
